@@ -14,6 +14,11 @@ app.use(
 );
 
 app.use((req, res, next) => {
+  console.log("SESSION: ", req.session);
+  next();
+});
+
+app.use((req, res, next) => {
   if (!req.session.counter) req.session.counter = 0;
   console.log("\nCounter", ++req.session.counter); // increment THEN log
   next(); // needed to continue through express middleware
